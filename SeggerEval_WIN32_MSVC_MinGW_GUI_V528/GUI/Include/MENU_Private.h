@@ -58,47 +58,51 @@ Purpose     : Internal header file
 //
 // MENU_SKIN_PRIVATE
 //
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } MENU_SKIN_PRIVATE;
 
 //
 // MENU_ITEM
 //
-typedef struct {
-  MENU_Handle hSubmenu;
-  U16         Id;
-  U16         Flags;
-  int         TextWidth;
-  char        acText[1];
+typedef struct
+{
+    MENU_Handle hSubmenu;
+    U16         Id;
+    U16         Flags;
+    int         TextWidth;
+    char        acText[1];
 } MENU_ITEM;
 
 //
 // MENU_PROPS
 //
-typedef struct {
-  GUI_COLOR           aTextColor[5];
-  GUI_COLOR           aBkColor[5];
-  U8                  aBorder[4];
-  const GUI_FONT    * pFont;
-  MENU_SKIN_PRIVATE   SkinPrivate;
+typedef struct
+{
+    GUI_COLOR           aTextColor[5];
+    GUI_COLOR           aBkColor[5];
+    U8                  aBorder[4];
+    const GUI_FONT    * pFont;
+    MENU_SKIN_PRIVATE   SkinPrivate;
 } MENU_PROPS;
 
 //
 // MENU_Obj
 //
-typedef struct {
-  WIDGET              Widget;
-  MENU_PROPS          Props;
-  GUI_ARRAY           ItemArray;
-  WM_HWIN             hOwner;
-  U16                 Flags;
-  char                IsSubmenuActive;
-  int                 Width;
-  int                 Height;
-  int                 Sel;
-  unsigned            ArrowAreaWidth;
-  WIDGET_SKIN const * pWidgetSkin;
+typedef struct
+{
+    WIDGET              Widget;
+    MENU_PROPS          Props;
+    GUI_ARRAY           ItemArray;
+    WM_HWIN             hOwner;
+    U16                 Flags;
+    char                IsSubmenuActive;
+    int                 Width;
+    int                 Height;
+    int                 Sel;
+    unsigned            ArrowAreaWidth;
+    WIDGET_SKIN const * pWidgetSkin;
 } MENU_Obj;
 
 /*********************************************************************
@@ -108,16 +112,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define MENU_INIT_ID(pObj)  (pObj->Widget.DebugId = MENU_ID)
+#define MENU_INIT_ID(pObj)  (pObj->Widget.DebugId = MENU_ID)
 #else
-  #define MENU_INIT_ID(pObj)
+#define MENU_INIT_ID(pObj)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  MENU_Obj * MENU_LockH(MENU_Handle hObj);
-  #define MENU_LOCK_H(hObj)   MENU_LockH(hObj)
+MENU_Obj * MENU_LockH(MENU_Handle hObj);
+#define MENU_LOCK_H(hObj)   MENU_LockH(hObj)
 #else
-  #define MENU_LOCK_H(hObj)   (MENU_Obj *)GUI_LOCK_H(hObj)
+#define MENU_LOCK_H(hObj)   (MENU_Obj *)GUI_LOCK_H(hObj)
 #endif
 
 /*********************************************************************

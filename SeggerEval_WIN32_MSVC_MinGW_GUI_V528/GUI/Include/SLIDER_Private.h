@@ -46,28 +46,31 @@ Purpose     : SLIDER private header file
 *
 **********************************************************************
 */
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } SLIDER_SKIN_PRIVATE;
 
-typedef struct {
-  U8                  Flags;
-  GUI_COLOR           BkColor;
-  GUI_COLOR           BarColor;
-  GUI_COLOR           FocusColor;
-  GUI_COLOR           TickColor;
-  SLIDER_SKIN_PRIVATE SkinPrivate;
+typedef struct
+{
+    U8                  Flags;
+    GUI_COLOR           BkColor;
+    GUI_COLOR           BarColor;
+    GUI_COLOR           FocusColor;
+    GUI_COLOR           TickColor;
+    SLIDER_SKIN_PRIVATE SkinPrivate;
 } SLIDER_PROPS;
 
-typedef struct {
-  WIDGET              Widget;
-  SLIDER_PROPS        Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  int                 NumTicks;
-  int                 Max;
-  int                 Min;
-  int                 v;
-  I16                 Width;
+typedef struct
+{
+    WIDGET              Widget;
+    SLIDER_PROPS        Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    int                 NumTicks;
+    int                 Max;
+    int                 Min;
+    int                 v;
+    I16                 Width;
 } SLIDER_Obj;
 
 /*********************************************************************
@@ -77,20 +80,20 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define SLIDER_INIT_ID(p) (p->Widget.DebugId = SLIDER_ID)
+#define SLIDER_INIT_ID(p) (p->Widget.DebugId = SLIDER_ID)
 #else
-  #define SLIDER_INIT_ID(p)
+#define SLIDER_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  SLIDER_Obj * SLIDER_LockH(SLIDER_Handle h);
-  #define SLIDER_LOCK_H(h)  SLIDER_LockH(h)
+SLIDER_Obj * SLIDER_LockH(SLIDER_Handle h);
+#define SLIDER_LOCK_H(h)  SLIDER_LockH(h)
 #else
-  #define SLIDER_LOCK_H(h)  (SLIDER_Obj *)GUI_LOCK_H(h)
+#define SLIDER_LOCK_H(h)  (SLIDER_Obj *)GUI_LOCK_H(h)
 #endif
 
 #ifndef   SLIDER_SUPPORT_TRANSPARENCY
-  #define SLIDER_SUPPORT_TRANSPARENCY WM_SUPPORT_TRANSPARENCY
+#define SLIDER_SUPPORT_TRANSPARENCY WM_SUPPORT_TRANSPARENCY
 #endif
 
 /*********************************************************************

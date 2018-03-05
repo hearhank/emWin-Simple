@@ -20,7 +20,7 @@ Purpose     : Private header
 ----------------------------------------------------------------------
 
 Explanation of terms:
-  
+
   Component   - Color channel, e.g., Red or Luminance.
   Sample      - Single component value (i.e., one number in the image data).
   Coefficient - Frequency coefficient (a DCT transform output number).
@@ -119,125 +119,129 @@ Explanation of terms:
 **********************************************************************
 */
 /* Default parameter structure for reading data from memory */
-typedef struct {
-  const U8 * pFileData;
-  I32   FileSize;
+typedef struct
+{
+    const U8 * pFileData;
+    I32   FileSize;
 } GUI_JPEG_PARAM;
 
 /* Huffman table definition */
-typedef struct {
-  unsigned aLookUp[256];
-  U8       aCodeSize[256];
-  unsigned aTree[512];
+typedef struct
+{
+    unsigned aLookUp[256];
+    U8       aCodeSize[256];
+    unsigned aTree[512];
 } HUFF_TABLE;
 
 /* Coefficient buffer used for progressive JPEGs */
-typedef struct {
-  int NumBlocksX;
-  int NumBlocksY;
-  unsigned BlockSize;
-  GUI_HMEM hData;
+typedef struct
+{
+    int NumBlocksX;
+    int NumBlocksY;
+    unsigned BlockSize;
+    GUI_HMEM hData;
 } COEFF_BUFFER;
 
 typedef struct GUI_JPEG_DCONTEXT GUI_JPEG_DCONTEXT;
 
-struct GUI_JPEG_DCONTEXT {
-  /* Function pointer for drawing one line of completely decoded pixels */
-  void (* pfWritePixels)(int x0, int y0, GUI_JPEG_DCONTEXT * pContext, GUI_COLOR (* pfGetColor)(const U8 ** ppData, unsigned SkipCnt), tLCDDEV_Color2Index * pfColor2Index);
-  /* Function pointer for reading one byte */
-  int (* pfGetU8)(GUI_JPEG_DCONTEXT * pContext, U8 * pByte);
+struct GUI_JPEG_DCONTEXT
+{
+    /* Function pointer for drawing one line of completely decoded pixels */
+    void (* pfWritePixels)(int x0, int y0, GUI_JPEG_DCONTEXT * pContext, GUI_COLOR (* pfGetColor)(const U8 ** ppData, unsigned SkipCnt), tLCDDEV_Color2Index * pfColor2Index);
+    /* Function pointer for reading one byte */
+    int (* pfGetU8)(GUI_JPEG_DCONTEXT * pContext, U8 * pByte);
 
-  GUI_GET_DATA_FUNC * pfGetData; /* 'GetData' Function pointer */
-  void * pParam;                 /* Pointer passed to 'GetData' function */
-  U32 Off;                       /* Data pointer */
-  /* Image size */
-  U16 xSize;
-  U16 ySize;
-  /* Input buffer */
-  const U8 * pBuffer;
-  unsigned   NumBytesInBuffer;
-  U8         StartOfFile;
-  U8         aStuff[4];        /* Stuff back buffer */
-  U8         NumBytesStuffed;  /* Number of stuffed bytes */
-  /* Bit buffer */
-  U32 BitBuffer;
-  int NumBitsLeft;
-  /* Huffman tables */
-  U8 aHuffNumTableAvail[MAX_HUFFTABLES];
-  U8 aaHuffNum[MAX_HUFFTABLES][17];   /* Pointer to number of Huffman codes per bit size */
-  U8 aaHuffVal[MAX_HUFFTABLES][256];  /* Pointer to Huffman codes */
-  HUFF_TABLE aHuffTable[MAX_HUFFTABLES];
-  HUFF_TABLE * apDC_Huff[MAX_BLOCKSPERMCU];
-  HUFF_TABLE * apAC_Huff[MAX_BLOCKSPERMCU];
-  /* Quantization tables */
-  U16 aaQuantTbl[MAX_QUANTTABLES][64];
-  U16 * apQuantTbl[MAX_QUANTTABLES];
-  /* Component information */
-  U8 NumCompsPerFrame;                      /* Number of components per frame */
-  U8 aCompHSamp[MAX_COMPONENTS];            /* Component's horizontal sampling factor */
-  U8 aCompVSamp[MAX_COMPONENTS];            /* Component's vertical sampling factor */
-  U8 aCompQuant[MAX_COMPONENTS];            /* Component's quantization table selector */
-  U8 aCompId   [MAX_COMPONENTS];            /* Component's ID */
-  U8 NumCompsPerScan;                       /* Number of components per scan */
-  U8 aCompList[MAX_COMPSINSCAN];            /* Components in this scan */
-  U8 aCompDC_Tab[MAX_COMPONENTS];           /* Component's DC Huffman coding table selector */
-  U8 aCompAC_Tab[MAX_COMPONENTS];           /* Component's AC Huffman coding table selector */
-  unsigned * apComponent[MAX_BLOCKSPERMCU]; /* Points into the table aLastDC_Val[] */
-  unsigned   aLastDC_Val[MAX_COMPONENTS];   /* Table of last DC values */
-  /* Data used for progressive scans */
-  U8 SpectralStart;                        /* Spectral selection start */
-  U8 SpectralEnd;                          /* Spectral selection end */
-  U8 SuccessiveLow;                        /* Successive approximation low */
-  U8 SuccessiveHigh;                       /* Successive approximation high */
-  COEFF_BUFFER aDC_Coeffs[MAX_COMPONENTS]; /* DC coefficient buffer for progressive scan */
-  COEFF_BUFFER aAC_Coeffs[MAX_COMPONENTS]; /* AC coefficient buffer for progressive scan */
-  int aBlockY_MCU[MAX_COMPONENTS];         /*  */
-  GUI_HMEM hBmpLine;
-  /* Common */
-  U8 TransformationRequired;
-  U8 IsProgressive;             /* Flag is set to 1 if JPEG is progressive */
-  U8 ScanType;                  /* Gray, Yh1v1, Yh1v2, Yh2v1, Yh2v2 */
-  int MaxMCUsPerRow;            /* Maximum number of MCUs per row */
-  int MaxMCUsPerCol;            /* Maximum number of MCUs per column */
-  int MaxBlocksPerMCU;          /* Maximum number of blocks per MCU */
-  int MaxBlocksPerRow;          /* Maximum number of blocks per row */
-  int MaxMCU_xSize;             /* MCU's max. X size in pixels */
-  int MaxMCU_ySize;             /* MCU's max. Y size in pixels */
-  int DestBytesPerPixel;        /* 4 (RGB) or 1 (Y) */
-  int DestBytesPerScanline;     /* Rounded up */
-  int RealDestBytesPerScanline; /* Actual bytes */
-  int EOB_Run;                  /* 'End Of Band' run */
-  int RestartInterval;
-  int RestartsLeft;
-  int NextRestartNum;
-  int MCUsPerRow;
-  int MCUsPerCol;
-  int NumBlocksPerMCU;
-  int aMCU_Org[MAX_BLOCKSPERMCU];
-  /* Block buffer */
-  GUI_HMEM hBlocks;
-  GUI_HMEM hBlockMaxZagSet;
-  /* Sample buffer */
-  GUI_HMEM hSampleBuf;
-  U8     * pSampleBuf;
-  /* Status */
-  int TotalLinesLeft; /* Total number of lines left in image */
-  int MCULinesLeft;   /* Total number of lines left in current MCU */
-  /* Output buffer(s) */
-  GUI_HMEM hScanLine0; /* Buffer 0 */
-  GUI_HMEM hScanLine1; /* Buffer 1, only used for V2 sampling factors */
-  U8 BufferIndex;
-  /* Arrays used for converting YCbCr to RGB */
-  int aCRR[256];
-  int aCBB[256];
-  I32 aCRG[256];
-  I32 aCBG[256];
-  /* Banding */
-  U8 BandingRequired;        /* Flag if banding is required */
-  unsigned NumBands;         /* Number of required bands for drawing the complete frame */
-  int NumBlocksPerBand; /* Number of vertical blocks per band */
-  int FirstBlockOfBand;
-  int aFirstBlockOfBand[MAX_COMPONENTS];
+    GUI_GET_DATA_FUNC * pfGetData; /* 'GetData' Function pointer */
+    void * pParam;                 /* Pointer passed to 'GetData' function */
+    U32 Off;                       /* Data pointer */
+    /* Image size */
+    U16 xSize;
+    U16 ySize;
+    /* Input buffer */
+    const U8 * pBuffer;
+    unsigned   NumBytesInBuffer;
+    U8         StartOfFile;
+    U8         aStuff[4];        /* Stuff back buffer */
+    U8         NumBytesStuffed;  /* Number of stuffed bytes */
+    /* Bit buffer */
+    U32 BitBuffer;
+    int NumBitsLeft;
+    /* Huffman tables */
+    U8 aHuffNumTableAvail[MAX_HUFFTABLES];
+    U8 aaHuffNum[MAX_HUFFTABLES][17];   /* Pointer to number of Huffman codes per bit size */
+    U8 aaHuffVal[MAX_HUFFTABLES][256];  /* Pointer to Huffman codes */
+    HUFF_TABLE aHuffTable[MAX_HUFFTABLES];
+    HUFF_TABLE * apDC_Huff[MAX_BLOCKSPERMCU];
+    HUFF_TABLE * apAC_Huff[MAX_BLOCKSPERMCU];
+    /* Quantization tables */
+    U16 aaQuantTbl[MAX_QUANTTABLES][64];
+    U16 * apQuantTbl[MAX_QUANTTABLES];
+    /* Component information */
+    U8 NumCompsPerFrame;                      /* Number of components per frame */
+    U8 aCompHSamp[MAX_COMPONENTS];            /* Component's horizontal sampling factor */
+    U8 aCompVSamp[MAX_COMPONENTS];            /* Component's vertical sampling factor */
+    U8 aCompQuant[MAX_COMPONENTS];            /* Component's quantization table selector */
+    U8 aCompId   [MAX_COMPONENTS];            /* Component's ID */
+    U8 NumCompsPerScan;                       /* Number of components per scan */
+    U8 aCompList[MAX_COMPSINSCAN];            /* Components in this scan */
+    U8 aCompDC_Tab[MAX_COMPONENTS];           /* Component's DC Huffman coding table selector */
+    U8 aCompAC_Tab[MAX_COMPONENTS];           /* Component's AC Huffman coding table selector */
+    unsigned * apComponent[MAX_BLOCKSPERMCU]; /* Points into the table aLastDC_Val[] */
+    unsigned   aLastDC_Val[MAX_COMPONENTS];   /* Table of last DC values */
+    /* Data used for progressive scans */
+    U8 SpectralStart;                        /* Spectral selection start */
+    U8 SpectralEnd;                          /* Spectral selection end */
+    U8 SuccessiveLow;                        /* Successive approximation low */
+    U8 SuccessiveHigh;                       /* Successive approximation high */
+    COEFF_BUFFER aDC_Coeffs[MAX_COMPONENTS]; /* DC coefficient buffer for progressive scan */
+    COEFF_BUFFER aAC_Coeffs[MAX_COMPONENTS]; /* AC coefficient buffer for progressive scan */
+    int aBlockY_MCU[MAX_COMPONENTS];         /*  */
+    GUI_HMEM hBmpLine;
+    /* Common */
+    U8 TransformationRequired;
+    U8 IsProgressive;             /* Flag is set to 1 if JPEG is progressive */
+    U8 ScanType;                  /* Gray, Yh1v1, Yh1v2, Yh2v1, Yh2v2 */
+    int MaxMCUsPerRow;            /* Maximum number of MCUs per row */
+    int MaxMCUsPerCol;            /* Maximum number of MCUs per column */
+    int MaxBlocksPerMCU;          /* Maximum number of blocks per MCU */
+    int MaxBlocksPerRow;          /* Maximum number of blocks per row */
+    int MaxMCU_xSize;             /* MCU's max. X size in pixels */
+    int MaxMCU_ySize;             /* MCU's max. Y size in pixels */
+    int DestBytesPerPixel;        /* 4 (RGB) or 1 (Y) */
+    int DestBytesPerScanline;     /* Rounded up */
+    int RealDestBytesPerScanline; /* Actual bytes */
+    int EOB_Run;                  /* 'End Of Band' run */
+    int RestartInterval;
+    int RestartsLeft;
+    int NextRestartNum;
+    int MCUsPerRow;
+    int MCUsPerCol;
+    int NumBlocksPerMCU;
+    int aMCU_Org[MAX_BLOCKSPERMCU];
+    /* Block buffer */
+    GUI_HMEM hBlocks;
+    GUI_HMEM hBlockMaxZagSet;
+    /* Sample buffer */
+    GUI_HMEM hSampleBuf;
+    U8     * pSampleBuf;
+    /* Status */
+    int TotalLinesLeft; /* Total number of lines left in image */
+    int MCULinesLeft;   /* Total number of lines left in current MCU */
+    /* Output buffer(s) */
+    GUI_HMEM hScanLine0; /* Buffer 0 */
+    GUI_HMEM hScanLine1; /* Buffer 1, only used for V2 sampling factors */
+    U8 BufferIndex;
+    /* Arrays used for converting YCbCr to RGB */
+    int aCRR[256];
+    int aCBB[256];
+    I32 aCRG[256];
+    I32 aCBG[256];
+    /* Banding */
+    U8 BandingRequired;        /* Flag if banding is required */
+    unsigned NumBands;         /* Number of required bands for drawing the complete frame */
+    int NumBlocksPerBand; /* Number of vertical blocks per band */
+    int FirstBlockOfBand;
+    int aFirstBlockOfBand[MAX_COMPONENTS];
 };
 
 /*********************************************************************

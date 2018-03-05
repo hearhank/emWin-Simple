@@ -38,7 +38,7 @@ Purpose     : Internal header file
 #define EDIT_REALLOC_SIZE  16
 
 #ifndef EDIT_XOFF
-  #define EDIT_XOFF        1
+#define EDIT_XOFF        1
 #endif
 
 /*********************************************************************
@@ -49,32 +49,34 @@ Purpose     : Internal header file
 */
 typedef struct EDIT_Obj_struct EDIT_Obj;
 
-typedef struct {
-  int              Align;
-  int              Border;
-  const GUI_FONT * pFont;
-  GUI_COLOR        aTextColor[2];
-  GUI_COLOR        aBkColor[2];
+typedef struct
+{
+    int              Align;
+    int              Border;
+    const GUI_FONT * pFont;
+    GUI_COLOR        aTextColor[2];
+    GUI_COLOR        aBkColor[2];
 } EDIT_PROPS;
 
-struct EDIT_Obj_struct {
-  WIDGET               Widget;
-  WM_HMEM              hpText;
-  I16                  MaxLen;
-  U16                  BufferSize;
-  I32                  Min, Max;        // Min max values as normalized floats (integers)
-  U8                   NumDecs;         // Number of decimals
-  I32                  CurrentValue;    // Current value
-  int                  CursorPos;       // Cursor position. 0 means left most
-  unsigned             SelSize;         // Number of selected characters
-  U8                   EditMode;        // Insert or overwrite mode
-  U8                   XSizeCursor;     // Size of cursor when working in insert mode
-  U8                   Flags;
-  tEDIT_AddKeyEx     * pfAddKeyEx;      // Handle key input
-  tEDIT_UpdateBuffer * pfUpdateBuffer;  // Update textbuffer
-  EDIT_PROPS           Props;
-  WM_HTIMER            hTimer;
-  U8                   MinMaxMode;
+struct EDIT_Obj_struct
+{
+    WIDGET               Widget;
+    WM_HMEM              hpText;
+    I16                  MaxLen;
+    U16                  BufferSize;
+    I32                  Min, Max;        // Min max values as normalized floats (integers)
+    U8                   NumDecs;         // Number of decimals
+    I32                  CurrentValue;    // Current value
+    int                  CursorPos;       // Cursor position. 0 means left most
+    unsigned             SelSize;         // Number of selected characters
+    U8                   EditMode;        // Insert or overwrite mode
+    U8                   XSizeCursor;     // Size of cursor when working in insert mode
+    U8                   Flags;
+    tEDIT_AddKeyEx     * pfAddKeyEx;      // Handle key input
+    tEDIT_UpdateBuffer * pfUpdateBuffer;  // Update textbuffer
+    EDIT_PROPS           Props;
+    WM_HTIMER            hTimer;
+    U8                   MinMaxMode;
 };
 
 /*********************************************************************
@@ -84,16 +86,16 @@ struct EDIT_Obj_struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define EDIT_INIT_ID(p) (p->Widget.DebugId = EDIT_ID)
+#define EDIT_INIT_ID(p) (p->Widget.DebugId = EDIT_ID)
 #else
-  #define EDIT_INIT_ID(p)
+#define EDIT_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  EDIT_Obj * EDIT_LockH(EDIT_Handle h);
-  #define EDIT_LOCK_H(h)   EDIT_LockH(h)
+EDIT_Obj * EDIT_LockH(EDIT_Handle h);
+#define EDIT_LOCK_H(h)   EDIT_LockH(h)
 #else
-  #define EDIT_LOCK_H(h)   (EDIT_Obj *)GUI_LOCK_H(h)
+#define EDIT_LOCK_H(h)   (EDIT_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

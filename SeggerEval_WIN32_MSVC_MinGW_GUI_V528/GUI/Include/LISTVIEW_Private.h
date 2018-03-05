@@ -50,73 +50,80 @@ Purpose     : Private LISTVIEW include
 **********************************************************************
 */
 
-typedef struct {
-  GUI_COLOR                    aBkColor[4];
-  GUI_COLOR                    aTextColor[4];
-  GUI_COLOR                    GridColor;
-  const GUI_FONT             * pFont;
-  U16                          ScrollStepH;
-  GUI_WRAPMODE                 WrapMode;
-  int                          DefaultAlign;
+typedef struct
+{
+    GUI_COLOR                    aBkColor[4];
+    GUI_COLOR                    aTextColor[4];
+    GUI_COLOR                    GridColor;
+    const GUI_FONT             * pFont;
+    U16                          ScrollStepH;
+    GUI_WRAPMODE                 WrapMode;
+    int                          DefaultAlign;
 } LISTVIEW_PROPS;
 
-typedef struct {
-  void                      (* pfDraw)(LISTVIEW_Handle hObj, unsigned Column, unsigned Row, GUI_RECT * pRect);
-  void                       * pData;
-  GUI_COLOR                    aBkColor[4];
-  GUI_COLOR                    aTextColor[4];
-  I16                          xOff, yOff;
-  U8                           Flags;
+typedef struct
+{
+    void                      (* pfDraw)(LISTVIEW_Handle hObj, unsigned Column, unsigned Row, GUI_RECT * pRect);
+    void                       * pData;
+    GUI_COLOR                    aBkColor[4];
+    GUI_COLOR                    aTextColor[4];
+    I16                          xOff, yOff;
+    U8                           Flags;
 } LISTVIEW_CELL_INFO;
 
-typedef struct {
-  WM_HMEM                      hCellInfo;                                         // Optional cell info. If 0, there is no cell info. (Defaults used)
-  char                         acText[1];
+typedef struct
+{
+    WM_HMEM                      hCellInfo;                                         // Optional cell info. If 0, there is no cell info. (Defaults used)
+    char                         acText[1];
 } LISTVIEW_CELL;
 
-typedef struct {
-  GUI_ARRAY                    hCellArray;
-  char                         Disabled;
-  U32                          UserData;
+typedef struct
+{
+    GUI_ARRAY                    hCellArray;
+    char                         Disabled;
+    U32                          UserData;
 } LISTVIEW_ROW;
 
-typedef struct {
-  U8                           Align;
-  int                       (* fpCompare)    (const void * p0, const void * p1);  // User function to be called to compare the contents of 2 cells
+typedef struct
+{
+    U8                           Align;
+    int                       (* fpCompare)    (const void * p0, const void * p1);  // User function to be called to compare the contents of 2 cells
 } LISTVIEW_COLUMN;
 
 typedef struct LISTVIEW_Obj LISTVIEW_Obj;
 
-typedef struct {
-  WM_HMEM                      hSortArray;
-  SORT_TYPE                    SortArrayNumItems;
-  int                       (* fpSort)(LISTVIEW_Handle hObj);                     // Function to be called to get a sorted array
-  void                      (* fpFree)(WM_HMEM hObj);                             // Function to be called to free the sort object
-  U8                           Reverse;
+typedef struct
+{
+    WM_HMEM                      hSortArray;
+    SORT_TYPE                    SortArrayNumItems;
+    int                       (* fpSort)(LISTVIEW_Handle hObj);                     // Function to be called to get a sorted array
+    void                      (* fpFree)(WM_HMEM hObj);                             // Function to be called to free the sort object
+    U8                           Reverse;
 } LISTVIEW_SORT;
 
-struct LISTVIEW_Obj {
-  WIDGET                       Widget;
-  HEADER_Handle                hHeader;
-  WIDGET_DRAW_ITEM_FUNC *      pfDrawItem;
-  GUI_ARRAY                    hRowArray;                                         // Each entry is a handle of LISTVIEW_ROW structure.
-  GUI_ARRAY                    hColumnArray;                                      // Each entry is a handle of LISTVIEW_COLUMN structure.
-  LISTVIEW_PROPS               Props;
-  int                          Sel;
-  int                          SelCol;
-  int                          ShowGrid;
-  int                          SortIndex;                                         // Column for sorting
-  unsigned                     RowDistY;
-  unsigned                     LBorder;
-  unsigned                     RBorder;
-  unsigned                     Fixed;
-  WM_SCROLL_STATE              ScrollStateV;
-  WM_SCROLL_STATE              ScrollStateH;
-  WM_HMEM                      hSort;
-  U8                           IsSorted;
-  U8                           IsPresorted;
-  U8                           ReverseSort;                                       // Set to 1 if reverse sorting is required
-  U8                           Flags;
+struct LISTVIEW_Obj
+{
+    WIDGET                       Widget;
+    HEADER_Handle                hHeader;
+    WIDGET_DRAW_ITEM_FUNC *      pfDrawItem;
+    GUI_ARRAY                    hRowArray;                                         // Each entry is a handle of LISTVIEW_ROW structure.
+    GUI_ARRAY                    hColumnArray;                                      // Each entry is a handle of LISTVIEW_COLUMN structure.
+    LISTVIEW_PROPS               Props;
+    int                          Sel;
+    int                          SelCol;
+    int                          ShowGrid;
+    int                          SortIndex;                                         // Column for sorting
+    unsigned                     RowDistY;
+    unsigned                     LBorder;
+    unsigned                     RBorder;
+    unsigned                     Fixed;
+    WM_SCROLL_STATE              ScrollStateV;
+    WM_SCROLL_STATE              ScrollStateH;
+    WM_HMEM                      hSort;
+    U8                           IsSorted;
+    U8                           IsPresorted;
+    U8                           ReverseSort;                                       // Set to 1 if reverse sorting is required
+    U8                           Flags;
 };
 
 /*********************************************************************
@@ -126,16 +133,16 @@ struct LISTVIEW_Obj {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define LISTVIEW_INIT_ID(p) (p->Widget.DebugId = LISTVIEW_ID)
+#define LISTVIEW_INIT_ID(p) (p->Widget.DebugId = LISTVIEW_ID)
 #else
-  #define LISTVIEW_INIT_ID(p)
+#define LISTVIEW_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  LISTVIEW_Obj * LISTVIEW_LockH(LISTVIEW_Handle h);
-  #define LISTVIEW_LOCK_H(h)   LISTVIEW_LockH(h)
+LISTVIEW_Obj * LISTVIEW_LockH(LISTVIEW_Handle h);
+#define LISTVIEW_LOCK_H(h)   LISTVIEW_LockH(h)
 #else
-  #define LISTVIEW_LOCK_H(h)   (LISTVIEW_Obj *)GUI_LOCK_H(h)
+#define LISTVIEW_LOCK_H(h)   (LISTVIEW_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

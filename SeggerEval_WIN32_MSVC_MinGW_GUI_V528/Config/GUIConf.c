@@ -51,16 +51,17 @@ Purpose     : Display controller initialization
 *   Called during the initialization process in order to set up the
 *   available memory for the GUI.
 */
-void GUI_X_Config(void) {
-  //
-  // 32 bit aligned memory area
-  //
-  static U32 aMemory[GUI_NUMBYTES / 4];
-  //
-  // Assign memory to emWin
-  //
-  GUI_ALLOC_AssignMemory(aMemory, GUI_NUMBYTES);
-  GUI_ALLOC_SetAvBlockSize(GUI_BLOCKSIZE);
+void GUI_X_Config(void)
+{
+    //
+    // 32 bit aligned memory area
+    //
+    static U32 aMemory[GUI_NUMBYTES / 4];
+    //
+    // Assign memory to emWin
+    //
+    GUI_ALLOC_AssignMemory(aMemory, GUI_NUMBYTES);
+    GUI_ALLOC_SetAvBlockSize(GUI_BLOCKSIZE);
 }
 
 /*************************** End of file ****************************/

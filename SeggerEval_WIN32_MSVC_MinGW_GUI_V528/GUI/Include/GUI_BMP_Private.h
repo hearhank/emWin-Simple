@@ -45,36 +45,39 @@ Purpose     : Private header file for GUI_BMP... functions
 //
 // Default parameter structure for reading data from memory
 //
-typedef struct {
-  const U8 * pFileData;
+typedef struct
+{
+    const U8 * pFileData;
 } GUI_BMP_PARAM;
 
 //
 // Context structure for getting stdio input
 //
-typedef struct {
-  GUI_GET_DATA_FUNC * pfGetData; // Function pointer
-  U32                 Off;       // Data pointer
-  void              * pParam;    // Parameter pointer passed to function
+typedef struct
+{
+    GUI_GET_DATA_FUNC * pfGetData; // Function pointer
+    U32                 Off;       // Data pointer
+    void              * pParam;    // Parameter pointer passed to function
 } GUI_BMP_CONTEXT;
 
 //
 // Parameter structure for passing several required variables to the
 // functions _DrawLine_RGB() and _DrawLine_ARGB() (in GUI_BMP_EnableAlpha.c).
 //
-typedef struct {
-  const U8            * pSrc;           // Pointer to data
-  I32                   xSrc;           // Used to read data
-  int                   ySrc;           // Used to read data
-  I32                   xSize;
-  U32                   BytesPerPixel;
-  tLCDDEV_Color2Index * pfColor2Index;
-  tLCDDEV_Index2Color * pfIndex2Color;  // Used to manage bitfield conversion
-  LCD_API_NEXT_PIXEL  * pNextPixel_API;
-  int                   x0;             // Used to draw data
-  int                   y0;             // Used to draw data
-  int                   x1;             // Used to draw data
-  int                   y1;             // Used to draw data
+typedef struct
+{
+    const U8            * pSrc;           // Pointer to data
+    I32                   xSrc;           // Used to read data
+    int                   ySrc;           // Used to read data
+    I32                   xSize;
+    U32                   BytesPerPixel;
+    tLCDDEV_Color2Index * pfColor2Index;
+    tLCDDEV_Index2Color * pfIndex2Color;  // Used to manage bitfield conversion
+    LCD_API_NEXT_PIXEL  * pNextPixel_API;
+    int                   x0;             // Used to draw data
+    int                   y0;             // Used to draw data
+    int                   x1;             // Used to draw data
+    int                   y1;             // Used to draw data
 } GUI_DRAWLINE_INFO;
 
 /*********************************************************************

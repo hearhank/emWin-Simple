@@ -34,18 +34,20 @@ Purpose     : TEXT include
 *
 **********************************************************************
 */
-typedef struct {
-  const GUI_FONT * pFont;
-  GUI_COLOR TextColor;
-  GUI_COLOR BkColor;
-  GUI_WRAPMODE WrapMode;
+typedef struct
+{
+    const GUI_FONT * pFont;
+    GUI_COLOR TextColor;
+    GUI_COLOR BkColor;
+    GUI_WRAPMODE WrapMode;
 } TEXT_PROPS;
 
-typedef struct {
-  WIDGET Widget;
-  TEXT_PROPS Props;
-  WM_HMEM hpText;
-  I16 Align;
+typedef struct
+{
+    WIDGET Widget;
+    TEXT_PROPS Props;
+    WM_HMEM hpText;
+    I16 Align;
 } TEXT_OBJ;
 
 /*********************************************************************
@@ -55,16 +57,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define TEXT_INIT_ID(p) p->Widget.DebugId = TEXT_ID
+#define TEXT_INIT_ID(p) p->Widget.DebugId = TEXT_ID
 #else
-  #define TEXT_INIT_ID(p)
+#define TEXT_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  TEXT_OBJ * TEXT_LockH(TEXT_Handle h);
-  #define TEXT_LOCK_H(h)   TEXT_LockH(h)
+TEXT_OBJ * TEXT_LockH(TEXT_Handle h);
+#define TEXT_LOCK_H(h)   TEXT_LockH(h)
 #else
-  #define TEXT_LOCK_H(h)   (TEXT_OBJ *)GUI_LOCK_H(h)
+#define TEXT_LOCK_H(h)   (TEXT_OBJ *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

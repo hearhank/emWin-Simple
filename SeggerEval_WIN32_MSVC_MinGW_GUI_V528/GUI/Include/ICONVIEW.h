@@ -30,15 +30,15 @@ Purpose     : ICONVIEW include
 #if GUI_WINSUPPORT
 
 #if defined(__cplusplus)
-  extern "C" {     /* Make sure we have C-declarations in C++ programs */
+extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #endif
 
-/*********************************************************************
-*
-*       Defines
-*
-**********************************************************************
-*/
+    /*********************************************************************
+    *
+    *       Defines
+    *
+    **********************************************************************
+    */
 //
 // Status- and create flags
 //
@@ -67,54 +67,54 @@ Purpose     : ICONVIEW include
 #define ICONVIEW_IA_BOTTOM          (1 << 2)
 #define ICONVIEW_IA_TOP             (2 << 2)
 
-/*********************************************************************
-*
-*       Types
-*
-**********************************************************************
-*/
-typedef WM_HMEM ICONVIEW_Handle;
+    /*********************************************************************
+    *
+    *       Types
+    *
+    **********************************************************************
+    */
+    typedef WM_HMEM ICONVIEW_Handle;
 
-/*********************************************************************
-*
-*       Public functions
-*
-**********************************************************************
-*/
-ICONVIEW_Handle ICONVIEW_CreateEx      (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, int xSizeItems, int ySizeItems);
-ICONVIEW_Handle ICONVIEW_CreateUser    (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, int xSizeItems, int ySizeItems, int NumExtraBytes);
-ICONVIEW_Handle ICONVIEW_CreateIndirect(const GUI_WIDGET_CREATE_INFO * pCreateInfo, WM_HWIN hWinParent, int x0, int y0, WM_CALLBACK * cb);
+    /*********************************************************************
+    *
+    *       Public functions
+    *
+    **********************************************************************
+    */
+    ICONVIEW_Handle ICONVIEW_CreateEx      (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, int xSizeItems, int ySizeItems);
+    ICONVIEW_Handle ICONVIEW_CreateUser    (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, int xSizeItems, int ySizeItems, int NumExtraBytes);
+    ICONVIEW_Handle ICONVIEW_CreateIndirect(const GUI_WIDGET_CREATE_INFO * pCreateInfo, WM_HWIN hWinParent, int x0, int y0, WM_CALLBACK * cb);
 
-int  ICONVIEW_AddBitmapItem           (ICONVIEW_Handle hObj, const GUI_BITMAP * pBitmap, const char * pText);
-int  ICONVIEW_AddStreamedBitmapItem   (ICONVIEW_Handle hObj, const void * pStreamedBitmap, const char * pText);
-void ICONVIEW_DeleteItem              (ICONVIEW_Handle hObj, unsigned Index);
-void ICONVIEW_EnableStreamAuto        (void);
-U32  ICONVIEW_GetItemUserData         (ICONVIEW_Handle hObj, int Index);
-int  ICONVIEW_GetNumItems             (ICONVIEW_Handle hObj);
-int  ICONVIEW_GetItemText             (ICONVIEW_Handle hObj, int Index, char * pBuffer, int MaxSize);
-int  ICONVIEW_GetSel                  (ICONVIEW_Handle hObj);
-int  ICONVIEW_GetUserData             (ICONVIEW_Handle hObj, void * pDest, int NumBytes);
-int  ICONVIEW_InsertBitmapItem        (ICONVIEW_Handle hObj, const GUI_BITMAP * pBitmap, const char * pText, int Index);
-int  ICONVIEW_InsertStreamedBitmapItem(ICONVIEW_Handle hObj, const void * pStreamedBitmap, const char * pText, int Index);
-int  ICONVIEW_SetBitmapItem           (ICONVIEW_Handle hObj, int Index, const GUI_BITMAP * pBitmap);
-void ICONVIEW_SetBkColor              (ICONVIEW_Handle hObj, int Index, GUI_COLOR Color);
-void ICONVIEW_SetFont                 (ICONVIEW_Handle hObj, const GUI_FONT * pFont);
-void ICONVIEW_SetFrame                (ICONVIEW_Handle hObj, int Coord, int Value);
-void ICONVIEW_SetItemText             (ICONVIEW_Handle hObj, int Index, const char * pText);
-void ICONVIEW_SetItemUserData         (ICONVIEW_Handle hObj, int Index, U32 UserData);
-void ICONVIEW_SetSel                  (ICONVIEW_Handle hObj, int Sel);
-void ICONVIEW_SetSpace                (ICONVIEW_Handle hObj, int Coord, int Value);
-int  ICONVIEW_SetStreamedBitmapItem   (ICONVIEW_Handle hObj, int Index, const void * pStreamedBitmap);
-void ICONVIEW_SetIconAlign            (ICONVIEW_Handle hObj, int IconAlign);
-void ICONVIEW_SetTextAlign            (ICONVIEW_Handle hObj, int TextAlign);
-void ICONVIEW_SetTextColor            (ICONVIEW_Handle hObj, int Index, GUI_COLOR Color);
-int  ICONVIEW_SetUserData             (ICONVIEW_Handle hObj, const void * pSrc, int NumBytes);
-void ICONVIEW_SetWrapMode             (ICONVIEW_Handle hObj, GUI_WRAPMODE WrapMode);
+    int  ICONVIEW_AddBitmapItem           (ICONVIEW_Handle hObj, const GUI_BITMAP * pBitmap, const char * pText);
+    int  ICONVIEW_AddStreamedBitmapItem   (ICONVIEW_Handle hObj, const void * pStreamedBitmap, const char * pText);
+    void ICONVIEW_DeleteItem              (ICONVIEW_Handle hObj, unsigned Index);
+    void ICONVIEW_EnableStreamAuto        (void);
+    U32  ICONVIEW_GetItemUserData         (ICONVIEW_Handle hObj, int Index);
+    int  ICONVIEW_GetNumItems             (ICONVIEW_Handle hObj);
+    int  ICONVIEW_GetItemText             (ICONVIEW_Handle hObj, int Index, char * pBuffer, int MaxSize);
+    int  ICONVIEW_GetSel                  (ICONVIEW_Handle hObj);
+    int  ICONVIEW_GetUserData             (ICONVIEW_Handle hObj, void * pDest, int NumBytes);
+    int  ICONVIEW_InsertBitmapItem        (ICONVIEW_Handle hObj, const GUI_BITMAP * pBitmap, const char * pText, int Index);
+    int  ICONVIEW_InsertStreamedBitmapItem(ICONVIEW_Handle hObj, const void * pStreamedBitmap, const char * pText, int Index);
+    int  ICONVIEW_SetBitmapItem           (ICONVIEW_Handle hObj, int Index, const GUI_BITMAP * pBitmap);
+    void ICONVIEW_SetBkColor              (ICONVIEW_Handle hObj, int Index, GUI_COLOR Color);
+    void ICONVIEW_SetFont                 (ICONVIEW_Handle hObj, const GUI_FONT * pFont);
+    void ICONVIEW_SetFrame                (ICONVIEW_Handle hObj, int Coord, int Value);
+    void ICONVIEW_SetItemText             (ICONVIEW_Handle hObj, int Index, const char * pText);
+    void ICONVIEW_SetItemUserData         (ICONVIEW_Handle hObj, int Index, U32 UserData);
+    void ICONVIEW_SetSel                  (ICONVIEW_Handle hObj, int Sel);
+    void ICONVIEW_SetSpace                (ICONVIEW_Handle hObj, int Coord, int Value);
+    int  ICONVIEW_SetStreamedBitmapItem   (ICONVIEW_Handle hObj, int Index, const void * pStreamedBitmap);
+    void ICONVIEW_SetIconAlign            (ICONVIEW_Handle hObj, int IconAlign);
+    void ICONVIEW_SetTextAlign            (ICONVIEW_Handle hObj, int TextAlign);
+    void ICONVIEW_SetTextColor            (ICONVIEW_Handle hObj, int Index, GUI_COLOR Color);
+    int  ICONVIEW_SetUserData             (ICONVIEW_Handle hObj, const void * pSrc, int NumBytes);
+    void ICONVIEW_SetWrapMode             (ICONVIEW_Handle hObj, GUI_WRAPMODE WrapMode);
 
-void ICONVIEW_Callback(WM_MESSAGE * pMsg);
+    void ICONVIEW_Callback(WM_MESSAGE * pMsg);
 
 #if defined(__cplusplus)
-  }
+}
 #endif
 
 #endif  // GUI_WINSUPPORT

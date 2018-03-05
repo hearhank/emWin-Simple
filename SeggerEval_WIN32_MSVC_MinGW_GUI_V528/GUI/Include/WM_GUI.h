@@ -27,10 +27,10 @@ Purpose     : Windows manager include for low level GUI routines
 extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #endif
 
-int       WM__InitIVRSearch(const GUI_RECT* pMaxRect);
-int       WM__GetNextIVR   (void);
-int       WM__GetOrgX_AA(void);
-int       WM__GetOrgY_AA(void);
+    int       WM__InitIVRSearch(const GUI_RECT* pMaxRect);
+    int       WM__GetNextIVR   (void);
+    int       WM__GetOrgX_AA(void);
+    int       WM__GetOrgY_AA(void);
 
 #define WM_ITERATE_START(pRect)                   \
   {                                               \
@@ -52,7 +52,7 @@ int       WM__GetOrgY_AA(void);
 #define WM_SUBORG(x0,y0)    WM_SUBORGX(x0); WM_SUBORGY(y0)
 
 #if defined(__cplusplus)
-  }
+}
 #endif
 
 

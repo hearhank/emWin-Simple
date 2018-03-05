@@ -85,7 +85,8 @@ DECLARE_HANDLE(HTOUCHINPUT);
 
 typedef unsigned long ULONG_PTR;
 
-typedef struct tagTOUCHINPUT {
+typedef struct tagTOUCHINPUT
+{
     LONG x;
     LONG y;
     HANDLE hSource;

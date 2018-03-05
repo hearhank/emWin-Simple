@@ -35,10 +35,10 @@ Purpose     : BUTTON private header file
 **********************************************************************
 */
 #ifndef   BUTTON_3D_MOVE_X
-  #define BUTTON_3D_MOVE_X 1
+#define BUTTON_3D_MOVE_X 1
 #endif
 #ifndef   BUTTON_3D_MOVE_Y
-  #define BUTTON_3D_MOVE_Y 1
+#define BUTTON_3D_MOVE_Y 1
 #endif
 
 /*********************************************************************
@@ -47,27 +47,30 @@ Purpose     : BUTTON private header file
 *
 **********************************************************************
 */
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } BUTTON_SKIN_PRIVATE;
 
-typedef struct {
-  GUI_COLOR aBkColor[3];
-  GUI_COLOR aTextColor[3];
-  GUI_COLOR FocusColor;
-  GUI_COLOR FrameColor;
-  const GUI_FONT * pFont;
-  BUTTON_SKIN_PRIVATE SkinPrivate;
-  I16 Align;
-  I16 xPosText, yPosText;
+typedef struct
+{
+    GUI_COLOR aBkColor[3];
+    GUI_COLOR aTextColor[3];
+    GUI_COLOR FocusColor;
+    GUI_COLOR FrameColor;
+    const GUI_FONT * pFont;
+    BUTTON_SKIN_PRIVATE SkinPrivate;
+    I16 Align;
+    I16 xPosText, yPosText;
 } BUTTON_PROPS;
 
-typedef struct {
-  WIDGET Widget;
-  BUTTON_PROPS Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  WM_HMEM hpText;
-  WM_HMEM ahDrawObj[3];
+typedef struct
+{
+    WIDGET Widget;
+    BUTTON_PROPS Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    WM_HMEM hpText;
+    WM_HMEM ahDrawObj[3];
 } BUTTON_Obj;
 
 /*********************************************************************
@@ -77,16 +80,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define BUTTON_INIT_ID(p) (p->Widget.DebugId = BUTTON_ID)
+#define BUTTON_INIT_ID(p) (p->Widget.DebugId = BUTTON_ID)
 #else
-  #define BUTTON_INIT_ID(p)
+#define BUTTON_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  BUTTON_Obj * BUTTON_LockH(BUTTON_Handle h);
-  #define BUTTON_LOCK_H(h)   BUTTON_LockH(h)
+BUTTON_Obj * BUTTON_LockH(BUTTON_Handle h);
+#define BUTTON_LOCK_H(h)   BUTTON_LockH(h)
 #else
-  #define BUTTON_LOCK_H(h)   (BUTTON_Obj *)GUI_LOCK_H(h)
+#define BUTTON_LOCK_H(h)   (BUTTON_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

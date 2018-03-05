@@ -37,16 +37,17 @@ Purpose     : Private include file for GUI_SetOrientation_xxx
 */
 typedef struct DRIVER_CONTEXT DRIVER_CONTEXT;
 
-struct DRIVER_CONTEXT {
-  void (* pfLog2Phys)(DRIVER_CONTEXT * pContext, int x, int y, int * px_phys, int * py_phys);
-  U8 * pData;
-  int BytesPerPixel;
-  int BytesPerLine;
-  int Orientation;
-  int xSize, ySize;
-  int vxSize, vySize;
-  int PixelOffset;
-  const GUI_ORIENTATION_API * pDrawingAPI;
+struct DRIVER_CONTEXT
+{
+    void (* pfLog2Phys)(DRIVER_CONTEXT * pContext, int x, int y, int * px_phys, int * py_phys);
+    U8 * pData;
+    int BytesPerPixel;
+    int BytesPerLine;
+    int Orientation;
+    int xSize, ySize;
+    int vxSize, vySize;
+    int PixelOffset;
+    const GUI_ORIENTATION_API * pDrawingAPI;
 };
 
 /*********************************************************************

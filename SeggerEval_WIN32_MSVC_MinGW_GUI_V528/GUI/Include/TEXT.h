@@ -31,20 +31,20 @@ Purpose     : TEXT include
 #if GUI_WINSUPPORT
 
 #if defined(__cplusplus)
-  extern "C" {     /* Make sure we have C-declarations in C++ programs */
+extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #endif
 
-/************************************************************
-*
-*       #defines
-*
-*************************************************************
-*/
+    /************************************************************
+    *
+    *       #defines
+    *
+    *************************************************************
+    */
 
-/************************************************************
-*
-*       Create / Status flags
-*/
+    /************************************************************
+    *
+    *       Create / Status flags
+    */
 #define TEXT_CF_LEFT    GUI_TA_LEFT
 #define TEXT_CF_RIGHT   GUI_TA_RIGHT
 #define TEXT_CF_HCENTER GUI_TA_HCENTER
@@ -54,21 +54,21 @@ Purpose     : TEXT include
 #define TEXT_CF_BOTTOM  GUI_TA_BOTTOM
 
 
-/*********************************************************************
-*
-*       Public Types
-*
-**********************************************************************
+    /*********************************************************************
+    *
+    *       Public Types
+    *
+    **********************************************************************
 
-*/
-typedef WM_HMEM TEXT_Handle;
+    */
+    typedef WM_HMEM TEXT_Handle;
 
-/*********************************************************************
-*
-*       Standard member functions
-*
-**********************************************************************
-*/
+    /*********************************************************************
+    *
+    *       Standard member functions
+    *
+    **********************************************************************
+    */
 
 #define TEXT_EnableMemdev(hObj)  WM_EnableMemdev(hObj)
 #define TEXT_DisableMemdev(hObj) WM_DisableMemdev(hObj)
@@ -76,61 +76,61 @@ typedef WM_HMEM TEXT_Handle;
 #define TEXT_Paint(hObj)         WM_Paint(hObj)
 #define TEXT_Invalidate(hObj)    WM_InvalidateWindow(hObj)
 
-/*********************************************************************
-*
-*       Create functions
-*
-**********************************************************************
-*/
-TEXT_Handle TEXT_Create        (int x0, int y0, int xSize, int ySize, int Id, int Flags, const char * s, int Align);
-TEXT_Handle TEXT_CreateAsChild (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int Id, int Flags, const char * s, int Align);
-TEXT_Handle TEXT_CreateEx      (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, const char * pText);
-TEXT_Handle TEXT_CreateUser    (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, const char * pText, int NumExtraBytes);
-TEXT_Handle TEXT_CreateIndirect(const GUI_WIDGET_CREATE_INFO * pCreateInfo, WM_HWIN hWinParent, int x0, int y0, WM_CALLBACK * cb);
+    /*********************************************************************
+    *
+    *       Create functions
+    *
+    **********************************************************************
+    */
+    TEXT_Handle TEXT_Create        (int x0, int y0, int xSize, int ySize, int Id, int Flags, const char * s, int Align);
+    TEXT_Handle TEXT_CreateAsChild (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int Id, int Flags, const char * s, int Align);
+    TEXT_Handle TEXT_CreateEx      (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, const char * pText);
+    TEXT_Handle TEXT_CreateUser    (int x0, int y0, int xSize, int ySize, WM_HWIN hParent, int WinFlags, int ExFlags, int Id, const char * pText, int NumExtraBytes);
+    TEXT_Handle TEXT_CreateIndirect(const GUI_WIDGET_CREATE_INFO * pCreateInfo, WM_HWIN hWinParent, int x0, int y0, WM_CALLBACK * cb);
 
-/*********************************************************************
-*
-*       The callback ...
-*
-* Do not call it directly ! It is only to be used from within an
-* overwritten callback.
-*/
-void TEXT_Callback(WM_MESSAGE * pMsg);
+    /*********************************************************************
+    *
+    *       The callback ...
+    *
+    * Do not call it directly ! It is only to be used from within an
+    * overwritten callback.
+    */
+    void TEXT_Callback(WM_MESSAGE * pMsg);
 
-/*********************************************************************
-*
-*       Member functions
-*
-**********************************************************************
-*/
+    /*********************************************************************
+    *
+    *       Member functions
+    *
+    **********************************************************************
+    */
 
-/* Methods changing properties */
+    /* Methods changing properties */
 
-int  TEXT_GetNumLines (TEXT_Handle hObj);
-int  TEXT_GetText     (TEXT_Handle hObj, char * pDest, U32 BufferSize);
-int  TEXT_GetUserData (TEXT_Handle hObj, void * pDest, int NumBytes);
-void TEXT_SetBkColor  (TEXT_Handle hObj, GUI_COLOR Color); /* Obsolete. Left in GUI for compatibility to older versions */
-void TEXT_SetFont     (TEXT_Handle hObj, const GUI_FONT * pFont);
-int  TEXT_SetText     (TEXT_Handle hObj, const char * s);
-void TEXT_SetTextAlign(TEXT_Handle hObj, int Align);
-void TEXT_SetTextColor(TEXT_Handle hObj, GUI_COLOR Color);
-int  TEXT_SetUserData (TEXT_Handle hObj, const void * pSrc, int NumBytes);
-void TEXT_SetWrapMode (TEXT_Handle hObj, GUI_WRAPMODE WrapMode);
+    int  TEXT_GetNumLines (TEXT_Handle hObj);
+    int  TEXT_GetText     (TEXT_Handle hObj, char * pDest, U32 BufferSize);
+    int  TEXT_GetUserData (TEXT_Handle hObj, void * pDest, int NumBytes);
+    void TEXT_SetBkColor  (TEXT_Handle hObj, GUI_COLOR Color); /* Obsolete. Left in GUI for compatibility to older versions */
+    void TEXT_SetFont     (TEXT_Handle hObj, const GUI_FONT * pFont);
+    int  TEXT_SetText     (TEXT_Handle hObj, const char * s);
+    void TEXT_SetTextAlign(TEXT_Handle hObj, int Align);
+    void TEXT_SetTextColor(TEXT_Handle hObj, GUI_COLOR Color);
+    int  TEXT_SetUserData (TEXT_Handle hObj, const void * pSrc, int NumBytes);
+    void TEXT_SetWrapMode (TEXT_Handle hObj, GUI_WRAPMODE WrapMode);
 
-/*********************************************************************
-*
-*       Global functions
-*
-**********************************************************************
-*/
+    /*********************************************************************
+    *
+    *       Global functions
+    *
+    **********************************************************************
+    */
 
-void             TEXT_SetDefaultFont     (const GUI_FONT * pFont);
-const GUI_FONT * TEXT_GetDefaultFont     (void);
-void             TEXT_SetDefaultTextColor(GUI_COLOR Color);
-GUI_WRAPMODE     TEXT_SetDefaultWrapMode (GUI_WRAPMODE WrapMode);
+    void             TEXT_SetDefaultFont     (const GUI_FONT * pFont);
+    const GUI_FONT * TEXT_GetDefaultFont     (void);
+    void             TEXT_SetDefaultTextColor(GUI_COLOR Color);
+    GUI_WRAPMODE     TEXT_SetDefaultWrapMode (GUI_WRAPMODE WrapMode);
 
 #if defined(__cplusplus)
-  }
+}
 #endif
 
 #endif  // GUI_WINSUPPORT

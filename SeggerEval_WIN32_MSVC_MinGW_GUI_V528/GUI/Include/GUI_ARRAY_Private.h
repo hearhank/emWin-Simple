@@ -34,9 +34,10 @@ Purpose     : Private array handling routines, should be used only
 *
 **********************************************************************
 */
-typedef struct {
-  U16 NumItems;
-  WM_HMEM haHandle;   /* Handle to buffer holding handles */
+typedef struct
+{
+    U16 NumItems;
+    WM_HMEM haHandle;   /* Handle to buffer holding handles */
 } GUI_ARRAY_OBJ;
 
 /*********************************************************************

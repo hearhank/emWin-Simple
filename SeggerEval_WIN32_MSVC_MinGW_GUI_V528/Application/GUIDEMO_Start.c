@@ -28,14 +28,6 @@ Purpose     : GUIDEMO initialization
 */
 void MainTask(void)
 {
-    //測試
-//    int i=0;
-//    GUI_Init();
-//    GUI_DispStringAt("Hello emWin",10,10);
-//    while(1){
-//        GUI_DispDecAt(i++,20,20,6);
-//        if(i>9999){i=0;}
-//    }
 #if GUI_WINSUPPORT
     WM_SetCreateFlags(WM_CF_MEMDEV); //自动使用存储设备（必须启用存储设备）
 #endif

@@ -31,86 +31,88 @@ Purpose     : Message box interface
 extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #endif
 
-/*********************************************************************
-*
-*       Defines
-*
-**********************************************************************
-*/
+    /*********************************************************************
+    *
+    *       Defines
+    *
+    **********************************************************************
+    */
 #define CHOOSECOLOR_CF_MOVEABLE FRAMEWIN_CF_MOVEABLE
 
 #define CHOOSECOLOR_CI_FRAME 0
 #define CHOOSECOLOR_CI_FOCUS 1
 
-/*********************************************************************
-*
-*       Types
-*
-**********************************************************************
-*/
-/*********************************************************************
-*
-*       CHOOSECOLOR_PROPS
-*/
-typedef struct {
-  unsigned  aBorder[2];
-  unsigned  aSpace[2];
-  unsigned  aButtonSize[2];
-  GUI_COLOR aColor[2];
-} CHOOSECOLOR_PROPS;
+    /*********************************************************************
+    *
+    *       Types
+    *
+    **********************************************************************
+    */
+    /*********************************************************************
+    *
+    *       CHOOSECOLOR_PROPS
+    */
+    typedef struct
+    {
+        unsigned  aBorder[2];
+        unsigned  aSpace[2];
+        unsigned  aButtonSize[2];
+        GUI_COLOR aColor[2];
+    } CHOOSECOLOR_PROPS;
 
-/*********************************************************************
-*
-*       CHOOSECOLOR_CONTEXT
-*/
-typedef struct {
-  U32               LastColor;
-  const GUI_COLOR * pColor;
-  unsigned          NumColors;
-  unsigned          NumColorsPerLine;
-  int               SelOld;
-  int               Sel;
-  WM_HWIN           hParent;
-  CHOOSECOLOR_PROPS Props;
-} CHOOSECOLOR_CONTEXT;
+    /*********************************************************************
+    *
+    *       CHOOSECOLOR_CONTEXT
+    */
+    typedef struct
+    {
+        U32               LastColor;
+        const GUI_COLOR * pColor;
+        unsigned          NumColors;
+        unsigned          NumColorsPerLine;
+        int               SelOld;
+        int               Sel;
+        WM_HWIN           hParent;
+        CHOOSECOLOR_PROPS Props;
+    } CHOOSECOLOR_CONTEXT;
 
-/*********************************************************************
-*
-*       Public code
-*
-**********************************************************************
-*/
-WM_HWIN CHOOSECOLOR_Create(WM_HWIN           hParent,
-                           int               xPos,
-                           int               yPos,
-                           int               xSize,
-                           int               ySize,
-                           const GUI_COLOR * pColor,
-                           unsigned          NumColors,
-                           unsigned          NumColorsPerLine,
-                           int               Sel,
-                           const char      * sCaption,
-                           int               Flags);
+    /*********************************************************************
+    *
+    *       Public code
+    *
+    **********************************************************************
+    */
+    WM_HWIN CHOOSECOLOR_Create(WM_HWIN           hParent,
+                               int               xPos,
+                               int               yPos,
+                               int               xSize,
+                               int               ySize,
+                               const GUI_COLOR * pColor,
+                               unsigned          NumColors,
+                               unsigned          NumColorsPerLine,
+                               int               Sel,
+                               const char      * sCaption,
+                               int               Flags);
 
-int  CHOOSECOLOR_GetSel(WM_HWIN hObj);
-void CHOOSECOLOR_SetSel(WM_HWIN hObj, int Sel);
+    int  CHOOSECOLOR_GetSel(WM_HWIN hObj);
+    void CHOOSECOLOR_SetSel(WM_HWIN hObj, int Sel);
 
-void CHOOSECOLOR_SetDefaultColor     (unsigned Index, GUI_COLOR Color);
-void CHOOSECOLOR_SetDefaultSpace     (unsigned Index, unsigned Space);
-void CHOOSECOLOR_SetDefaultBorder    (unsigned Index, unsigned Border);
-void CHOOSECOLOR_SetDefaultButtonSize(unsigned Index, unsigned ButtonSize);
+    void CHOOSECOLOR_SetDefaultColor     (unsigned Index, GUI_COLOR Color);
+    void CHOOSECOLOR_SetDefaultSpace     (unsigned Index, unsigned Space);
+    void CHOOSECOLOR_SetDefaultBorder    (unsigned Index, unsigned Border);
+    void CHOOSECOLOR_SetDefaultButtonSize(unsigned Index, unsigned ButtonSize);
 
-/*********************************************************************
-*
-*       The callback ...
-*
-* Do not call it directly ! It is only to be used from within an
-* overwritten callback.
-*/
-void CHOOSECOLOR_Callback(WM_MESSAGE * pMsg);
+    /*********************************************************************
+    *
+    *       The callback ...
+    *
+    * Do not call it directly ! It is only to be used from within an
+    * overwritten callback.
+    */
+    void CHOOSECOLOR_Callback(WM_MESSAGE * pMsg);
 
 #if defined(__cplusplus)
-  }
+}
 #endif
 
 #endif /* GUI_WINSUPPORT */

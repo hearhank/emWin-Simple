@@ -46,35 +46,38 @@ Purpose     : Private LISTBOX include
 **********************************************************************
 */
 
-typedef struct {
-  U16  xSize, ySize;
-  I32  ItemPosY;
-  U8   Status;
-  char acText[1];
+typedef struct
+{
+    U16  xSize, ySize;
+    I32  ItemPosY;
+    U8   Status;
+    char acText[1];
 } LISTBOX_ITEM;
 
-typedef struct {
-  const GUI_FONT * pFont;
-  U16              ScrollStepH;
-  GUI_COLOR aBackColor[4];
-  GUI_COLOR aTextColor[4];
-  GUI_COLOR aScrollbarColor[3];
-  I16 Align;
+typedef struct
+{
+    const GUI_FONT * pFont;
+    U16              ScrollStepH;
+    GUI_COLOR aBackColor[4];
+    GUI_COLOR aTextColor[4];
+    GUI_COLOR aScrollbarColor[3];
+    I16 Align;
 } LISTBOX_PROPS;
 
-typedef struct {
-  WIDGET Widget;
-  GUI_ARRAY ItemArray;
-  WIDGET_DRAW_ITEM_FUNC* pfDrawItem;
-  WM_SCROLL_STATE ScrollStateV;
-  WM_SCROLL_STATE ScrollStateH;
-  LISTBOX_PROPS Props;
-  WM_HWIN hOwner;
-  I16 Sel;                        /* current selection */
-  U8 Flags;
-  U8  ScrollbarWidth;
-  U16 ItemSpacing;
-  U16 ContentSizeX;
+typedef struct
+{
+    WIDGET Widget;
+    GUI_ARRAY ItemArray;
+    WIDGET_DRAW_ITEM_FUNC* pfDrawItem;
+    WM_SCROLL_STATE ScrollStateV;
+    WM_SCROLL_STATE ScrollStateH;
+    LISTBOX_PROPS Props;
+    WM_HWIN hOwner;
+    I16 Sel;                        /* current selection */
+    U8 Flags;
+    U8  ScrollbarWidth;
+    U16 ItemSpacing;
+    U16 ContentSizeX;
 } LISTBOX_Obj;
 
 /*********************************************************************
@@ -84,16 +87,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define LISTBOX_INIT_ID(p) p->Widget.DebugId = LISTBOX_ID
+#define LISTBOX_INIT_ID(p) p->Widget.DebugId = LISTBOX_ID
 #else
-  #define LISTBOX_INIT_ID(p)
+#define LISTBOX_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  LISTBOX_Obj * LISTBOX_LockH(LISTBOX_Handle h);
-  #define LISTBOX_LOCK_H(h)   LISTBOX_LockH(h)
+LISTBOX_Obj * LISTBOX_LockH(LISTBOX_Handle h);
+#define LISTBOX_LOCK_H(h)   LISTBOX_LockH(h)
 #else
-  #define LISTBOX_LOCK_H(h)   (LISTBOX_Obj *)GUI_LOCK_H(h)
+#define LISTBOX_LOCK_H(h)   (LISTBOX_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************
@@ -124,7 +127,7 @@ void         LISTBOX__AddSize               (LISTBOX_Obj * pObj, int Index);
 #endif /* GUI_WINSUPPORT */
 
 #else                            /* Avoid problems with empty object modules */
-  void LISTBOX_C(void) {}
+void LISTBOX_C(void) {}
 #endif
 
 /*************************** End of file ****************************/

@@ -41,11 +41,11 @@ extern const struct tLCDDEV_APIList_struct * /* const */ LCD_aAPI[GUI_NUM_LAYERS
 #define LCD_TYPE_COMTRANS U16
 
 #ifdef LCD_LUT_COM
-  extern LCD_TYPE_COMTRANS LCD__aLine2Com0[LCD_YSIZE];
+extern LCD_TYPE_COMTRANS LCD__aLine2Com0[LCD_YSIZE];
 #endif
 
 #ifdef LCD_LUT_SEG
-  extern LCD_TYPE_COMTRANS LCD__aCol2Seg0[LCD_XSIZE];
+extern LCD_TYPE_COMTRANS LCD__aCol2Seg0[LCD_XSIZE];
 #endif
 
 /*********************************************************************
@@ -67,7 +67,7 @@ extern const struct tLCDDEV_APIList_struct * /* const */ LCD_aAPI[GUI_NUM_LAYERS
   void     LCD_##DISTX##_SetLUTEntry  (U8 Pos, LCD_COLOR Color); \
   void   * LCD_##DISTX##_GetDevFunc   (int Index); \
   void     LCD_##DISTX##_ReInit       (void)
-    
+
 DECLARE_PROTOTYPES(DIST0);
 DECLARE_PROTOTYPES(DIST1);
 DECLARE_PROTOTYPES(DIST2);

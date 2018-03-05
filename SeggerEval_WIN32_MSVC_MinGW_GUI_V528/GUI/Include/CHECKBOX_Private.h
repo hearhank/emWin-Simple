@@ -36,23 +36,23 @@ Purpose     : CHECKBOX private header file
 **********************************************************************
 */
 #ifndef   CHECKBOX_BKCOLOR0_DEFAULT
-  #define CHECKBOX_BKCOLOR0_DEFAULT 0x808080           /* Inactive color */
+#define CHECKBOX_BKCOLOR0_DEFAULT 0x808080           /* Inactive color */
 #endif
 
 #ifndef   CHECKBOX_BKCOLOR1_DEFAULT
-  #define CHECKBOX_BKCOLOR1_DEFAULT GUI_WHITE          /* Active color */
+#define CHECKBOX_BKCOLOR1_DEFAULT GUI_WHITE          /* Active color */
 #endif
 
 #ifndef   CHECKBOX_FGCOLOR0_DEFAULT
-  #define CHECKBOX_FGCOLOR0_DEFAULT 0x101010
+#define CHECKBOX_FGCOLOR0_DEFAULT 0x101010
 #endif
 
 #ifndef   CHECKBOX_FGCOLOR1_DEFAULT
-  #define CHECKBOX_FGCOLOR1_DEFAULT GUI_BLACK
+#define CHECKBOX_FGCOLOR1_DEFAULT GUI_BLACK
 #endif
 
 #ifndef   CHECKBOX_DEFAULT_SIZE
-  #define CHECKBOX_DEFAULT_SIZE          15
+#define CHECKBOX_DEFAULT_SIZE          15
 #endif
 
 /*********************************************************************
@@ -61,31 +61,34 @@ Purpose     : CHECKBOX private header file
 *
 **********************************************************************
 */
-typedef struct {
-  unsigned              (* pfGetButtonSize)(void);
-  WIDGET_DRAW_ITEM_FUNC  * pfDrawSkin;
+typedef struct
+{
+    unsigned              (* pfGetButtonSize)(void);
+    WIDGET_DRAW_ITEM_FUNC  * pfDrawSkin;
 } CHECKBOX_SKIN_PRIVATE;
 
-typedef struct {
-  const GUI_FONT      * pFont;
-  GUI_COLOR             aBkColorBox[2]; /* Colors used to draw the box background */
-  GUI_COLOR             BkColor;        /* Widget background color */
-  GUI_COLOR             TextColor;
-  GUI_COLOR             FocusColor;
-  CHECKBOX_SKIN_PRIVATE SkinPrivate;
-  I16                   Align;
-  U8                    Spacing;
-  const GUI_BITMAP    * apBm[6];
+typedef struct
+{
+    const GUI_FONT      * pFont;
+    GUI_COLOR             aBkColorBox[2]; /* Colors used to draw the box background */
+    GUI_COLOR             BkColor;        /* Widget background color */
+    GUI_COLOR             TextColor;
+    GUI_COLOR             FocusColor;
+    CHECKBOX_SKIN_PRIVATE SkinPrivate;
+    I16                   Align;
+    U8                    Spacing;
+    const GUI_BITMAP    * apBm[6];
 } CHECKBOX_PROPS;
 
-typedef struct {
-  WIDGET              Widget;
-  CHECKBOX_PROPS      Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  U8                  NumStates;
-  U8                  CurrentState;
-  WM_HMEM             hpText;
-  U32                 ButtonSize;
+typedef struct
+{
+    WIDGET              Widget;
+    CHECKBOX_PROPS      Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    U8                  NumStates;
+    U8                  CurrentState;
+    WM_HMEM             hpText;
+    U32                 ButtonSize;
 } CHECKBOX_Obj;
 
 /*********************************************************************
@@ -95,16 +98,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define CHECKBOX_INIT_ID(p) (p->Widget.DebugId = CHECKBOX_ID)
+#define CHECKBOX_INIT_ID(p) (p->Widget.DebugId = CHECKBOX_ID)
 #else
-  #define CHECKBOX_INIT_ID(p)
+#define CHECKBOX_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  CHECKBOX_Obj * CHECKBOX_LockH(CHECKBOX_Handle h);
-  #define CHECKBOX_LOCK_H(h)   CHECKBOX_LockH(h)
+CHECKBOX_Obj * CHECKBOX_LockH(CHECKBOX_Handle h);
+#define CHECKBOX_LOCK_H(h)   CHECKBOX_LockH(h)
 #else
-  #define CHECKBOX_LOCK_H(h)   (CHECKBOX_Obj *)GUI_LOCK_H(h)
+#define CHECKBOX_LOCK_H(h)   (CHECKBOX_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

@@ -40,8 +40,9 @@ File        : WinMain.c
 *
 *       WinMain
 */
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,  LPSTR lpCmdLine, int nCmdShow) {
-  return SIM_GUI_App(hInstance, hPrevInstance,  lpCmdLine, nCmdShow);
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,  LPSTR lpCmdLine, int nCmdShow)
+{
+    return SIM_GUI_App(hInstance, hPrevInstance,  lpCmdLine, nCmdShow);
 }
 
 /*************************** End of file ****************************/

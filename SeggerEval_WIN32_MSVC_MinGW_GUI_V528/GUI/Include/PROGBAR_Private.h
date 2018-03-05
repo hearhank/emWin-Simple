@@ -44,27 +44,30 @@ Purpose     : Internal header file
 *
 **********************************************************************
 */
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } PROGBAR_SKIN_PRIVATE;
 
-typedef struct {
-  const GUI_FONT * pFont;
-  GUI_COLOR aBarColor[2];
-  GUI_COLOR aTextColor[2];
-  PROGBAR_SKIN_PRIVATE SkinPrivate;
+typedef struct
+{
+    const GUI_FONT * pFont;
+    GUI_COLOR aBarColor[2];
+    GUI_COLOR aTextColor[2];
+    PROGBAR_SKIN_PRIVATE SkinPrivate;
 } PROGBAR_PROPS;
 
-typedef struct {
-  WIDGET Widget;
-  int v;
-  WM_HMEM hpText;
-  I16 XOff, YOff;
-  I16 TextAlign;
-  int Min, Max;
-  PROGBAR_PROPS Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  U8 Flags;
+typedef struct
+{
+    WIDGET Widget;
+    int v;
+    WM_HMEM hpText;
+    I16 XOff, YOff;
+    I16 TextAlign;
+    int Min, Max;
+    PROGBAR_PROPS Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    U8 Flags;
 } PROGBAR_Obj;
 
 /*********************************************************************
@@ -74,16 +77,16 @@ typedef struct {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define PROGBAR_INIT_ID(p) p->Widget.DebugId = PROGBAR_ID
+#define PROGBAR_INIT_ID(p) p->Widget.DebugId = PROGBAR_ID
 #else
-  #define PROGBAR_INIT_ID(p)
+#define PROGBAR_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  PROGBAR_Obj * PROGBAR_LockH(PROGBAR_Handle h);
-  #define PROGBAR_LOCK_H(h)   PROGBAR_LockH(h)
+PROGBAR_Obj * PROGBAR_LockH(PROGBAR_Handle h);
+#define PROGBAR_LOCK_H(h)   PROGBAR_LockH(h)
 #else
-  #define PROGBAR_LOCK_H(h)   (PROGBAR_Obj *)GUI_LOCK_H(h)
+#define PROGBAR_LOCK_H(h)   (PROGBAR_Obj *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************

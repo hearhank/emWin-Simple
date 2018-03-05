@@ -37,38 +37,42 @@ Purpose     : Private HEADER include
 *
 **********************************************************************
 */
-typedef struct {
-  int     Width;
-  I16     Align;
-  WM_HMEM hDrawObj;
-  char    acText[1];
+typedef struct
+{
+    int     Width;
+    I16     Align;
+    WM_HMEM hDrawObj;
+    char    acText[1];
 } HEADER_COLUMN;
 
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } HEADER_SKIN_PRIVATE;
 
-typedef struct {
-  const GUI_FONT    * pFont;
-  GUI_COLOR           BkColor;
-  GUI_COLOR           TextColor;
-  GUI_COLOR           ArrowColor;
-  HEADER_SKIN_PRIVATE SkinPrivate;
+typedef struct
+{
+    const GUI_FONT    * pFont;
+    GUI_COLOR           BkColor;
+    GUI_COLOR           TextColor;
+    GUI_COLOR           ArrowColor;
+    HEADER_SKIN_PRIVATE SkinPrivate;
 } HEADER_PROPS;
 
-typedef struct {
-  WIDGET              Widget;
-  HEADER_PROPS        Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  GUI_ARRAY           Columns;
-  int                 CapturePosX;
-  int                 CaptureItem;
-  int                 ScrollPos;
-  int                 Sel;
-  int                 DirIndicatorColumn;
-  int                 DirIndicatorReverse;
-  unsigned            Fixed;
-  U8                  DragLimit;
+typedef struct
+{
+    WIDGET              Widget;
+    HEADER_PROPS        Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    GUI_ARRAY           Columns;
+    int                 CapturePosX;
+    int                 CaptureItem;
+    int                 ScrollPos;
+    int                 Sel;
+    int                 DirIndicatorColumn;
+    int                 DirIndicatorReverse;
+    unsigned            Fixed;
+    U8                  DragLimit;
 } HEADER_Obj;
 
 /*********************************************************************
@@ -95,16 +99,16 @@ extern WIDGET_SKIN const * HEADER__pSkinDefault;
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define HEADER_INIT_ID(p)  (p->Widget.DebugId = HEADER_ID)
+#define HEADER_INIT_ID(p)  (p->Widget.DebugId = HEADER_ID)
 #else
-  #define HEADER_INIT_ID(p)
+#define HEADER_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  HEADER_Obj * HEADER_LockH(HEADER_Handle h);
-  #define HEADER_LOCK_H(h)   HEADER_LockH(h)
+HEADER_Obj * HEADER_LockH(HEADER_Handle h);
+#define HEADER_LOCK_H(h)   HEADER_LockH(h)
 #else
-  #define HEADER_LOCK_H(h)   (HEADER_Obj *)GUI_LOCK_H(h)
+#define HEADER_LOCK_H(h)   (HEADER_Obj *)GUI_LOCK_H(h)
 #endif
 
 void HEADER__SetDrawObj(HEADER_Handle hObj, unsigned Index, GUI_DRAW_HANDLE hDrawObj);

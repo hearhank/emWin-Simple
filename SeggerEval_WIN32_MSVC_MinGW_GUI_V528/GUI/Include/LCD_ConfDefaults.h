@@ -30,31 +30,31 @@ Purpose     : Valid LCD configuration and defaults
 *       Configuration defaults
 */
 #ifndef   LCD_MIRROR_X
-  #define LCD_MIRROR_X 0
+#define LCD_MIRROR_X 0
 #endif
 #ifndef   LCD_MIRROR_Y
-  #define LCD_MIRROR_Y 0
+#define LCD_MIRROR_Y 0
 #endif
 #ifndef   LCD_SWAP_XY
-  #define LCD_SWAP_XY 0
+#define LCD_SWAP_XY 0
 #endif
 #ifndef   LCD_FIRSTCOM0
-  #define LCD_FIRSTCOM0 0
+#define LCD_FIRSTCOM0 0
 #endif
 #ifndef   LCD_FIRSTSEG0
-  #define LCD_FIRSTSEG0 0
+#define LCD_FIRSTSEG0 0
 #endif
 #ifndef   LCD_SWAP_RB
-  #define LCD_SWAP_RB 0
+#define LCD_SWAP_RB 0
 #endif
 #ifndef   LCD_DISPLAY_INDEX
-  #define LCD_DISPLAY_INDEX 0
+#define LCD_DISPLAY_INDEX 0
 #endif
 #ifndef   LCD_ENDIAN_BIG
-  #define LCD_ENDIAN_BIG 0
+#define LCD_ENDIAN_BIG 0
 #endif
 #ifndef   LCD_ALLOW_NON_OPTIMIZED_MODE
-  #define LCD_ALLOW_NON_OPTIMIZED_MODE 1
+#define LCD_ALLOW_NON_OPTIMIZED_MODE 1
 #endif
 
 #endif /* LCD_CONFIG_DEFAULTS_H */

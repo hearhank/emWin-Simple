@@ -49,29 +49,29 @@ Purpose     : SCROLLBAR internal header file
 
 /* Define colors */
 #ifndef   SCROLLBAR_COLOR_SHAFT_DEFAULT
-  #define SCROLLBAR_COLOR_SHAFT_DEFAULT 0x808080
+#define SCROLLBAR_COLOR_SHAFT_DEFAULT 0x808080
 #endif
 
 #ifndef   SCROLLBAR_COLOR_ARROW_DEFAULT
-  #define SCROLLBAR_COLOR_ARROW_DEFAULT GUI_BLACK
+#define SCROLLBAR_COLOR_ARROW_DEFAULT GUI_BLACK
 #endif
 
 #ifndef   SCROLLBAR_COLOR_THUMB_DEFAULT
-  #define SCROLLBAR_COLOR_THUMB_DEFAULT 0xc0c0c0
+#define SCROLLBAR_COLOR_THUMB_DEFAULT 0xc0c0c0
 #endif
 
 #ifndef   SCROLLBAR_THUMB_SIZE_MIN_DEFAULT
-  #define SCROLLBAR_THUMB_SIZE_MIN_DEFAULT 4
+#define SCROLLBAR_THUMB_SIZE_MIN_DEFAULT 4
 #endif
 
 #ifndef SCROLLBAR_DEFAULT_WIDTH
-  #if   WIDGET_USE_SCHEME_SMALL
-    #define SCROLLBAR_DEFAULT_WIDTH 11
-  #elif WIDGET_USE_SCHEME_MEDIUM
-    #define SCROLLBAR_DEFAULT_WIDTH 16
-  #elif WIDGET_USE_SCHEME_LARGE
-    #define SCROLLBAR_DEFAULT_WIDTH 22
-  #endif
+#if   WIDGET_USE_SCHEME_SMALL
+#define SCROLLBAR_DEFAULT_WIDTH 11
+#elif WIDGET_USE_SCHEME_MEDIUM
+#define SCROLLBAR_DEFAULT_WIDTH 16
+#elif WIDGET_USE_SCHEME_LARGE
+#define SCROLLBAR_DEFAULT_WIDTH 22
+#endif
 #endif
 
 #define SCROLLBAR_TIMER_ID 1234
@@ -93,39 +93,43 @@ extern I16        SCROLLBAR__ThumbSizeMin;
 *
 **********************************************************************
 */
-typedef struct {
-  WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
+typedef struct
+{
+    WIDGET_DRAW_ITEM_FUNC * pfDrawSkin;
 } SCROLLBAR_SKIN_PRIVATE;
 
-typedef struct {
-  GUI_COLOR aColor[3];
-  SCROLLBAR_SKIN_PRIVATE SkinPrivate;
+typedef struct
+{
+    GUI_COLOR aColor[3];
+    SCROLLBAR_SKIN_PRIVATE SkinPrivate;
 } SCROLLBAR_PROPS;
 
-typedef struct {
-  int x0_LeftArrow;
-  int x1_LeftArrow;
-  int x0_Thumb;
-  int x1_Thumb;
-  int x0_RightArrow;
-  int x1_RightArrow;
-  int x1;
-  int xSizeMoveable;
-  int ThumbSize;
+typedef struct
+{
+    int x0_LeftArrow;
+    int x1_LeftArrow;
+    int x0_Thumb;
+    int x1_Thumb;
+    int x0_RightArrow;
+    int x1_RightArrow;
+    int x1;
+    int xSizeMoveable;
+    int ThumbSize;
 } SCROLLBAR_POSITIONS;
 
 typedef struct SCROLLBAR_OBJ SCROLLBAR_OBJ;
 
-struct SCROLLBAR_OBJ {
-  WIDGET Widget;
-  SCROLLBAR_PROPS Props;
-  WIDGET_SKIN const * pWidgetSkin;
-  void (* pfCalcPositions)(SCROLLBAR_Handle hObj, SCROLLBAR_POSITIONS * pPos);
-  int NumItems, v, PageSize;
-  int State;
-  int TimerStep;
-  int TouchPos;
-  WM_HMEM hTimer;
+struct SCROLLBAR_OBJ
+{
+    WIDGET Widget;
+    SCROLLBAR_PROPS Props;
+    WIDGET_SKIN const * pWidgetSkin;
+    void (* pfCalcPositions)(SCROLLBAR_Handle hObj, SCROLLBAR_POSITIONS * pPos);
+    int NumItems, v, PageSize;
+    int State;
+    int TimerStep;
+    int TouchPos;
+    WM_HMEM hTimer;
 };
 
 /*********************************************************************
@@ -135,16 +139,16 @@ struct SCROLLBAR_OBJ {
 **********************************************************************
 */
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  #define SCROLLBAR_INIT_ID(p) (p->Widget.DebugId = SCROLLBAR_ID)
+#define SCROLLBAR_INIT_ID(p) (p->Widget.DebugId = SCROLLBAR_ID)
 #else
-  #define SCROLLBAR_INIT_ID(p)
+#define SCROLLBAR_INIT_ID(p)
 #endif
 
 #if GUI_DEBUG_LEVEL >= GUI_DEBUG_LEVEL_CHECK_ALL
-  SCROLLBAR_OBJ * SCROLLBAR_LockH(SCROLLBAR_Handle h);
-  #define SCROLLBAR_LOCK_H(h)   SCROLLBAR_LockH(h)
+SCROLLBAR_OBJ * SCROLLBAR_LockH(SCROLLBAR_Handle h);
+#define SCROLLBAR_LOCK_H(h)   SCROLLBAR_LockH(h)
 #else
-  #define SCROLLBAR_LOCK_H(h)   (SCROLLBAR_OBJ *)GUI_LOCK_H(h)
+#define SCROLLBAR_LOCK_H(h)   (SCROLLBAR_OBJ *)GUI_LOCK_H(h)
 #endif
 
 /*********************************************************************
