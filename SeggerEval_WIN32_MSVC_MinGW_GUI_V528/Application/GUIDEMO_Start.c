@@ -26,18 +26,28 @@ Purpose     : GUIDEMO initialization
 *
 *       MainTask
 */
-void MainTask(void) {
-  #if GUI_WINSUPPORT
-    WM_SetCreateFlags(WM_CF_MEMDEV);
-  #endif
-  GUI_Init();
-  #ifdef WIN32
+void MainTask(void)
+{
+    //測試
+//    int i=0;
+//    GUI_Init();
+//    GUI_DispStringAt("Hello emWin",10,10);
+//    while(1){
+//        GUI_DispDecAt(i++,20,20,6);
+//        if(i>9999){i=0;}
+//    }
+#if GUI_WINSUPPORT
+    WM_SetCreateFlags(WM_CF_MEMDEV); //自动使用存储设备（必须启用存储设备）
+#endif
+    GUI_Init();//初始化emWin窗口
+#ifdef WIN32
     GUI_SPY_StartServer();
-  #endif
-  #if GUI_WINSUPPORT
-    WM_MULTIBUF_Enable(1);
-  #endif
-  GUIDEMO_Main();
+    //GUI_VNC_X_StartServer();
+#endif
+#if GUI_WINSUPPORT
+    WM_MULTIBUF_Enable(1);//启用多缓冲器，以便把所有窗口都重绘了之后再显示。
+#endif
+    GUIDEMO_Main();
 }
 
 /*************************** End of file ****************************/
